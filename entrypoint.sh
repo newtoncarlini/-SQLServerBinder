@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-echo redspot | sudo -S service postgresql start
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<your-password>' -Q "EXEC sp_start_diagnostics; EXEC sp_readerrorlog;"
 
 exec "$@"
