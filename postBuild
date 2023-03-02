@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Install MS SQL tools
+apt-get update && apt-get install -y gnupg2 curl
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list > /etc/apt/sources.list.d/mssql-server.list
+apt-get update && apt-get install -y mssql-server
+
+# Install ODBC driver for SQL Server
+apt-get install -y unixodbc-dev
+
+# Install Python libraries for SQL Server
+apt-get install -y gcc g++
+pip install pyodbc sqlalchemy jupyter-server-proxy
+
+# Start the SQL Server service
+/opt/mssql/bin/sqlservr &
+sleep 30s
