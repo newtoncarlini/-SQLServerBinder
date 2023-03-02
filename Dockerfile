@@ -32,7 +32,7 @@ RUN echo "jovyan:redspot" | chpasswd && \
 
 # Configura o banco de dados
 USER mssql
-RUN /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<your-password>' -Q "CREATE DATABASE <your-database-name>"
+RUN /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '' -Q "CREATE DATABASE dbfito"
 
 # Instala as bibliotecas necessárias
 USER root
