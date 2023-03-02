@@ -1,6 +1,8 @@
 # Utiliza a imagem do Jupyter Notebook como base
 FROM jupyter/datascience-notebook
 
+
+
 # Instala o SQL Server
 USER root
 RUN apt-get update && \
@@ -14,8 +16,11 @@ RUN apt-get update && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     . /etc/profile.d/mssql-tools.sh && \
     apt-get install -y unixodbc-dev && \
+    apt-get -y install libpq-dev gcc && \
     apt-get install -y python3-dev python3-pip && \
-    pip3 install pyodbc pandas sqlalchemy
+    pip3 install psycopg2 pyodbc pandas sqlalchemy && \
+    pip3 install -r requirements.txt
+
 
 # Configura o SQL Server
 USER mssql
