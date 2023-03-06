@@ -19,8 +19,8 @@ RUN apt-get update && \
     apt-get install -y unixodbc-dev && \
     apt-get -y install libpq-dev gcc && \
     apt-get install -y python3-dev python3-pip && \
-    pip3 install psycopg2 pyodbc pandas sqlalchemy && \
-    pip3 install -r requirements.txt
+    pip3 install psycopg2 pyodbc sqlalchemy # && \
+    # pip3 install -r requirements.txt
 
 
 # Configura o SQL Server
