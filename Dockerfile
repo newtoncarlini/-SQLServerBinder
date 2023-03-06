@@ -10,17 +10,17 @@ RUN apt-get update && \
     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/debian/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
     apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev && \
     apt-get clean && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> /etc/profile.d/mssql-tools.sh && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
-    . /etc/profile.d/mssql-tools.sh && \
-    apt-get -y install apt-utils &&\
-    apt-get install -y unixodbc-dev && \
-    apt-get -y install libpq-dev gcc && \
-    apt-get install -y python3-dev python3-pip && \
+    . /etc/profile.d/mssql-tools.sh
+
+# Instala as dependências do Python
+RUN apt-get install -y python3-dev python3-pip libpq-dev gcc && \
     pip3 install psycopg2 pyodbc sqlalchemy && \
     pip3 install -r requirements.txt
+
 
 
 # Configura o SQL Server
