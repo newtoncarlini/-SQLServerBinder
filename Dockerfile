@@ -17,16 +17,4 @@ RUN apt-get update && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     . /etc/profile.d/mssql-tools.sh
 
-# Instala as dependências do Python
-RUN apt-get install -y python3-dev python3-pip libpq-dev gcc && \
-    pip3 install psycopg2 pyodbc sqlalchemy && \
-    pip3 install -r requirements.txt
-
-# Configura o SQL Server
-USER mssql
-RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true && \
-    /opt/mssql/bin/mssql-conf set telemetry.customerfeedback false && \
-    /opt/mssql/bin/mssql-conf set sqlagent.startup_type manual && \
-    /opt/mssql/bin/mssql-conf set hadr.hadrenabled 0
-
 
