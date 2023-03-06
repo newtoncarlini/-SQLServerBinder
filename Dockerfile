@@ -37,13 +37,13 @@ RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true && \
 
 # Configura o usuário
 USER root
-RUN echo "SA:redspot" | chpasswd && \
-    adduser SA sudo && \
-    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/SA
+RUN echo "adminbanco:fito@2023" | chpasswd && \
+    adduser adminbanco sudo && \
+    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/adminbanco
 
 # Configura o banco de dados
 USER mssql
-RUN /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '' -Q "CREATE DATABASE dbfito"
+RUN /opt/mssql-tools/bin/sqlcmd -S localhost -U adminbanco -P '' -Q "CREATE DATABASE dbfito"
 
 # Instala as bibliotecas necessárias
 USER root
