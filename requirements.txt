@@ -3,7 +3,6 @@ ipywidgets
 pandas
 sqlalchemy
 jupyter-server-proxy
--i https://pypi.org/simple
 asgiref
 django-cors-headers
 django
