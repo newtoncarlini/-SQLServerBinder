@@ -1,5 +1,5 @@
-# Utiliza a imagem
-FROM mcr.microsoft.com/mssql/server:2019-latest
+# Utiliza a imagem do Ubuntu 20.04 como base
+FROM ubuntu:20.04
 
 # Atualiza o cache do APT e instala as dependências do SQL Server
 USER root
