@@ -4,11 +4,11 @@ pandas
 sqlalchemy
 jupyter-server-proxy
 -i https://pypi.org/simple
-asgiref==3.2.7
-django-cors-headers==3.3.0
-django==3.0.7
-djangorestframework==3.11.0
-gunicorn==20.0.4
-psycopg2-binary==2.8.5
+asgiref
+django-cors-headers
+django
+djangorestframework
+gunicorn
+psycopg2-binary
 pytz==2020.1
 sqlparse==0.3.1
