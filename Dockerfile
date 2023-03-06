@@ -29,29 +29,4 @@ RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true && \
     /opt/mssql/bin/mssql-conf set sqlagent.startup_type manual && \
     /opt/mssql/bin/mssql-conf set hadr.hadrenabled 0
 
-# Configura o usuário
-USER root
-RUN echo "jovyan:redspot" | chpasswd && \
-    adduser jovyan sudo && \
-    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/jovyan
 
-# Configura o banco de dados
-USER mssql
-RUN /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '' -Q "CREATE DATABASE dbfito"
-
-# Instala as bibliotecas necessárias
-USER root
-COPY requirements.txt /tmp/
-RUN pip3 install -r /tmp/requirements.txt
-
-# Copia os arquivos
-USER jovyan
-COPY *.ipynb ./
-COPY *.sql ./
-
-# Define o comando de entrada
-USER root
-COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-USER jovyan
-ENTRYPOINT ["/entrypoint.sh"]
