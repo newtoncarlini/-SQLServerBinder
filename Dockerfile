@@ -37,9 +37,9 @@ RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true && \
 
 # Configura o usuário
 USER root
-RUN echo "jovyan:redspot" | chpasswd && \
-    adduser jovyan sudo && \
-    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/jovyan
+RUN echo "SA:redspot" | chpasswd && \
+    adduser SA sudo && \
+    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/SA
 
 # Configura o banco de dados
 USER mssql
@@ -59,7 +59,7 @@ COPY *.sql ./
 USER root
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
-USER jovyan
+USER SA
 ENTRYPOINT ["/entrypoint.sh"]
 
 
