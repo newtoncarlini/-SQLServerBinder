@@ -1,5 +1,5 @@
-# Utiliza a imagem do Jupyter Notebook como base
-FROM jupyter/datascience-notebook
+# Utiliza a imagem
+FROM mcr.microsoft.com/mssql/server:latest
 
 # Atualiza o cache do APT e instala as dependências do SQL Server
 USER root
