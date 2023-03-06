@@ -15,6 +15,7 @@ RUN apt-get update && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> /etc/profile.d/mssql-tools.sh && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     . /etc/profile.d/mssql-tools.sh && \
+    apt-get -y install apt-utils &&\
     apt-get install -y unixodbc-dev && \
     apt-get -y install libpq-dev gcc && \
     apt-get install -y python3-dev python3-pip && \
