@@ -39,7 +39,7 @@ RUN /opt/mssql/bin/mssql-conf set sqlagent.enabled true && \
 USER root
 RUN echo "adminbanco:fito@2023" | chpasswd && \
     adduser adminbanco sudo && \
-    echo "jovyan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/adminbanco
+    echo "adminbanco ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/adminbanco
 
 # Configura o banco de dados
 USER mssql
@@ -51,7 +51,7 @@ COPY requirements.txt /tmp/
 RUN pip3 install -r /tmp/requirements.txt
 
 # Copia os arquivos
-USER jovyan
+USER adminbanco
 COPY *.ipynb ./
 COPY *.sql ./
 
