@@ -59,7 +59,7 @@ COPY *.sql ./
 USER root
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
-USER SA
+USER adminbanco 
 ENTRYPOINT ["/entrypoint.sh"]
 
 
